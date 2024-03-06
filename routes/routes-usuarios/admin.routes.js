@@ -14,7 +14,7 @@ router.delete("/administrador/:id", deleteAdmin)
 router.get("/administrador/:id", getAdmin)
 
 //inicio de sesion
-router.post("/login", iniciarSesionAdmin);
+router.post("/login-admin", iniciarSesionAdmin);
 
 
 export default router;
