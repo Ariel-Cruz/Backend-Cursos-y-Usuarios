@@ -126,8 +126,15 @@ export const iniciarSesion = async (req, res) => {
         res.status(200).json({ 
             mensaje: "Sesion iniciada",
             data:{
-                nombre: usuario.nombre,
                 id: usuario._id,
+                nombre: usuario.nombre,
+                apellido: usuario.apellido,
+                correo: usuario.correo,
+                direccion: usuario.direccion,
+                fechaNacimiento: usuario.fechaNacimiento,
+                imagen: usuario.imagen,
+                cursoAsignado: usuario.cursoAsignado
+
             },
             token: token
          });
