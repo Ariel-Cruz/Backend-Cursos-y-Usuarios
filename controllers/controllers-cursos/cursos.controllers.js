@@ -103,3 +103,25 @@ export const AsignarModulo = async(req, res) =>{
         return res.status(500).json({message: error.message})
     }
 }
+export const QuitarModulo = async(req, res) =>{
+    const { id } = req.params;
+    const { modulos } = req.body;
+    try{
+        const curso = await Curso.findById(id)
+        if(!curso) return res.sendStatus(404)
+
+        if(!curso.modulos.includes(modulos)){
+            return res.sendStatus(404)
+
+        }
+        curso.modulos = curso.modulos.filter(moduloId => moduloId.toString() !== modulos.toString())
+
+        const cursoActualizado = await curso.save()
+        const cursoActualizadoAmpliada = await Curso.findById(cursoActualizado._id).populate("modulos")
+        
+        return res.json(cursoActualizadoAmpliada)
+    }catch(error){
+        console.log(error.message)
+        return res.status(500).json({message: error.message})
+    }
+}
